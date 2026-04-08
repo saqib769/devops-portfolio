@@ -1,14 +1,39 @@
-# react-app-frontend
+# React App Dockerize 🚀
 
+Example of Dockerizing React + Vite project for development with hot reload!
 
-Sample app created with [Create React App](https://github.com/facebookincubator/create-react-app) and used for my tutorial [Building a Serverless Web App with AWS Services](https://www.pluralsight.com/guides/front-end-javascript/building-a-serverless-web-app-on-aws-services).
+[![React JS](https://img.shields.io/badge/ReactJS-00adcc?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-bd34fe?style=flat-square&logo=vite&logoColor=ffe31e)](https://vitejs.dev/)
+[![Docker](https://img.shields.io/badge/Docker-0db7ed?style=flat-square&logo=docker&logoColor=white)](https://docs.docker.com/get-started/overview/)
 
-I took this [React CRUD boilerplate](https://github.com/ariesmcrae/reactjs-crud-boilerplate) and removed all the non-essential functionality, the API mock calls, and upgrade all dependencies to their latest versions. All credit for the app goes to [Aries McRae](https://github.com/ariesmcrae).
+## Prerequisites
 
-You'll need to have [Node.js](https://nodejs.org/en/download/) installed and an API to create/read/update/delete courses and authors, as described in the article.
+-   Basic Knowledge of React+Vite, Git, Github
+-   Understanding Docker (Image, Container, Volume, Compose)
+-   Docker on the Local Environment
 
-In the `server` directory you can find a sample API made with Nojde.js and Express to test the app locally. Just execute `npm install` to install the dependencies and start the server with `npm start`. Change the API URL in `src/api/serverUrl.js` to `http:localhost:4000` or whatever your server is deployed.
+## Setup and Run in Docker
 
-# License
-MIT
+Clone the github repository:
 
+```
+git clone https://github.com/tarikulwebx/react-app-dockerize.git
+```
+
+Navigate to the project directory:
+
+```
+cd react-app-dockerize
+```
+
+Run the command to build image and run containe in detach mode:
+
+```
+docker-compose up -d
+```
+
+Stop the container (if your want)
+
+```
+docker-compose down
+```
