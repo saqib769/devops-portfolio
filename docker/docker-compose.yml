@@ -20,3 +20,18 @@ services:
 
     # Command to run React dev server
     command: npm run dev
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins_c
+    ports:
+      - "8080:8080"    # Jenkins UI
+      - "50000:50000"  # Jenkins agent
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # So Jenkins can build Docker images
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # skip setup wizard for demo
+
+volumes:
+  jenkins_home:
