@@ -1,5 +1,6 @@
 # React App Dockerize 🚀
 
+
 Example of Dockerizing React + Vite project for development with hot reload!
 
 [![React JS](https://img.shields.io/badge/ReactJS-00adcc?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
