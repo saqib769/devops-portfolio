@@ -3,35 +3,31 @@ version: "3.8"
 services:
   react-app-dockerize:
     container_name: react-app-dockerize_c
-
-    # Build the image using the Dockerfile in the same folder
     build:
-      context: ..        # <-- Go up one level to root of repo
-      dockerfile: docker/Dockerfile  # <-- path relative to context
-
-    # Map host port 5002 to container port 5002
+      context: ..
+      dockerfile: Dockerfile
     ports:
       - "5002:5002"
-
-    # Mount the app code into the container
     volumes:
       - ../:/app
       - /app/node_modules
-
-    # Command to run React dev server
     command: npm run dev
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: ..
+      dockerfile: docker/jenkins.Dockerfile
     container_name: jenkins_c
     ports:
-      - "8080:8080"    # Jenkins UI
-      - "50000:50000"  # Jenkins agent
+      - "8080:8080"
+      - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock  # So Jenkins can build Docker images
+      - ./jenkins/casc.yaml:/var/jenkins_home/casc.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"  # skip setup wizard for demo
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
+      CASC_JENKINS_CONFIG: "/var/jenkins_home/casc.yaml"
 
 volumes:
   jenkins_home:
