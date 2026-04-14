@@ -1,33 +1,16 @@
-version: "3.8"
-
 services:
-  react-app-dockerize:
-    container_name: react-app-dockerize_c
-    build:
-      context: ..
-      dockerfile: Dockerfile
-    ports:
-      - "5002:5002"
-    volumes:
-      - ../:/app
-      - /app/node_modules
-    command: npm run dev
-
   jenkins:
     build:
       context: ..
       dockerfile: docker/jenkins.Dockerfile
+    image: custom-jenkins-node   # 👈 IMPORTANT
     container_name: jenkins_c
     ports:
       - "8080:8080"
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      - ./jenkins/casc.yaml:/var/jenkins_home/casc.yaml:ro
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
-      CASC_JENKINS_CONFIG: "/var/jenkins_home/casc.yaml"
 
 volumes:
   jenkins_home:
