@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5002
 
 # Specify the command to run the application when the container starts
-CMD [ "npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
