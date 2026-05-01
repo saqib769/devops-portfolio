@@ -1,0 +1,24 @@
+services:
+  jenkins:
+    build:
+      context: ..
+      dockerfile: docker/jenkins.Dockerfile
+    image: custom-jenkins-node
+    container_name: jenkins_c
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile   
+    container_name: app_c
+    ports:
+      - "5002:5002"   
+
+volumes:
+  jenkins_home:
